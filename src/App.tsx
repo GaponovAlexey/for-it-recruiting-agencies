@@ -1,10 +1,14 @@
+import { Button } from '@mui/material'
 import React from 'react'
+import { Header } from './components/Header'
 
 function App() {
   return (
-    <div className='App'>
-      return <Button variant='contained'>Hello World</Button>;
-    </div>
+    <>
+      <Header />
+
+      hiasdasdasdadw
+    </>
   )
 }
 
