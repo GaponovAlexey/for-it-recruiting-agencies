@@ -1,14 +1,18 @@
 import { css } from '@emotion/css'
 import React, { FC } from 'react'
+import ImgMediaCard from './ImgMediaCard'
 
 export const Main: FC = () => {
   return (
     <div
       className={css`
         padding: 10px 20px;
+        
       `}
     >
-      <div></div>
+      <div>
+        <ImgMediaCard />
+      </div>
     </div>
   )
 }
