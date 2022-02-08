@@ -21,8 +21,18 @@ export const fetchUserPhotos = createAsyncThunk(
   'photos/fetch',
   async (_, { dispatch, rejectWithValue }) => {
     try {
-      const response = await fetch(userAPI)
-      
+      const response = await fetch(userAPI, {
+        method: 'GET',
+        body: JSON.stringify({
+          title: 'foo',
+          body: 'bar',
+          userId: 1,
+        }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+
       const data = await response.json()
       return data
     } catch {}
@@ -41,15 +51,21 @@ function isRejectedAction(action: AnyAction): action is RejectedAction {
 export interface CounterState {
   photos: userIDfetch | any
   status: String
+  curentPage: Number
+  perPage: Number
+  totalPage: Number
 }
 
 const initialState: CounterState = {
   photos: [],
   status: '',
+  curentPage: 1,
+  perPage: 10,
+  totalPage: 1,
 }
 
 const photosSlice = createSlice({
-  name: 'counter',
+  name: 'photos/Slice',
   initialState,
   reducers: {
     addPhoto: (state, { payload }) => {
@@ -60,7 +76,7 @@ const photosSlice = createSlice({
     [fetchUserPhotos.pending.type]: (state) => {
       state.status = 'loading'
     },
-    [fetchUserPhotos.fulfilled.type]: (state, { payload }): void => {
+    [fetchUserPhotos.fulfilled.type]: (state, { payload }) => {
       state.status = 'resolved'
       state.photos.push(payload)
     },
@@ -70,6 +86,6 @@ const photosSlice = createSlice({
   },
 })
 
-export const { addPhoto } = photosSlice.actions
+export const {} = photosSlice.actions
 
 export default photosSlice.reducer
