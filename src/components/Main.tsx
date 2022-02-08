@@ -3,13 +3,11 @@ import React, { FC, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchUserPhotos } from '../Redux/reducer'
 import { RootState } from '../Redux/store'
-import ImgMediaCard from './ImgMediaCard'
 
 export const Main: FC = (): JSX.Element => {
   const { photos, curentPage, totalPage, perPage } = useSelector(
-    (state: RootState) => state.allPhoto
+    (state: RootState) => state?.allPhoto
   )
-
   const dispatch = useDispatch()
   console.log(photos)
 
@@ -25,14 +23,14 @@ export const Main: FC = (): JSX.Element => {
         padding: 10px 20px;
       `}
     >
-      <div className={css``}>
-        {photos.map((ph: any) => {
-          return <div key={ph.id}>{/* <ImgMediaCard {...ph} /> */}</div>
-        })}
+      <div>
+        {photos.map((ph: any) => (
+          <div>{ph}</div>
+        ))}
       </div>
       <div>
-        {page.map((page) => (
-          <span>{page}</span>
+        {page.map((page, index) => (
+          <span key={index}>{page}</span>
         ))}
       </div>
     </div>

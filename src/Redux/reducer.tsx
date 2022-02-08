@@ -21,17 +21,7 @@ export const fetchUserPhotos = createAsyncThunk(
   'photos/fetch',
   async (_, { dispatch, rejectWithValue }) => {
     try {
-      const response = await fetch(userAPI, {
-        method: 'GET',
-        body: JSON.stringify({
-          title: 'foo',
-          body: 'bar',
-          userId: 1,
-        }),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        },
-      })
+      const response = await fetch(userAPI)
 
       const data = await response.json()
       return data
@@ -78,7 +68,7 @@ const photosSlice = createSlice({
     },
     [fetchUserPhotos.fulfilled.type]: (state, { payload }) => {
       state.status = 'resolved'
-      state.photos.push(payload)
+      state.photos += payload
     },
     [fetchUserPhotos.rejected.type]: (state) => {
       state.status = 'rejected'
