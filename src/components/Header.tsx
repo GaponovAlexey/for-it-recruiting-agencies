@@ -1,9 +1,8 @@
 import { css } from '@emotion/css'
-import { Avatar, Badge } from '@mui/material'
-import React from 'react'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import { Avatar } from '@mui/material'
+import React, { FC } from 'react'
 
-export const Header = () => {
+export const Header: FC = () => {
   return (
     <div
       className={css`
