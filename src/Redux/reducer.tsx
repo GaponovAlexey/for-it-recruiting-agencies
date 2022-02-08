@@ -14,14 +14,14 @@ interface userIDfetch {
   thumbnailUrl: String
 }
 
-const userAPI = 'http://jsonplaceholder.typicode.com/photos'
+const userAPI = 'http://jsonplaceholder.typicode.com/photos?'
 
 //  create the thunk
 export const fetchUserPhotos = createAsyncThunk(
   'photos/fetch',
-  async (_, { dispatch, rejectWithValue }) => {
+  async (id, { dispatch, rejectWithValue }) => {
     try {
-      const response = await fetch(userAPI)
+      const response = await fetch(userAPI + `${id}`)
 
       const data = await response.json()
       return data
@@ -41,17 +41,17 @@ function isRejectedAction(action: AnyAction): action is RejectedAction {
 export interface CounterState {
   photos: userIDfetch | any
   status: String
-  curentPage: Number
-  perPage: Number
-  totalPage: Number
+  query: String
+  page: Number
+  pageQty: Number
 }
 
 const initialState: CounterState = {
   photos: [],
   status: '',
-  curentPage: 1,
-  perPage: 10,
-  totalPage: 1,
+  query: 'react',
+  page: 1,
+  pageQty: 0,
 }
 
 const photosSlice = createSlice({
