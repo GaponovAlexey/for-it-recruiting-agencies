@@ -22,9 +22,7 @@ export const fetchUserPhotos = createAsyncThunk(
   async (_, { dispatch, rejectWithValue }) => {
     try {
       const response = await fetch(userAPI)
-      if (!response.ok) {
-        throw new Error('server Error!')
-      }
+      
       const data = await response.json()
       return data
     } catch {}
@@ -41,7 +39,7 @@ function isRejectedAction(action: AnyAction): action is RejectedAction {
 }
 
 export interface CounterState {
-  photos: userIDfetch
+  photos: userIDfetch | any
   status: String
 }
 
@@ -64,7 +62,7 @@ const photosSlice = createSlice({
     },
     [fetchUserPhotos.fulfilled.type]: (state, { payload }): void => {
       state.status = 'resolved'
-      state.photos += payload
+      state.photos.push(payload)
     },
     [fetchUserPhotos.rejected.type]: (state) => {
       state.status = 'rejected'

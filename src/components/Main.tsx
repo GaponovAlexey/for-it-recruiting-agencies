@@ -1,10 +1,12 @@
 import { css } from '@emotion/css'
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
+import { RootState } from '../Redux/store'
 import ImgMediaCard from './ImgMediaCard'
 
-export const Main: FC = () => {
-  const photos = useSelector((state) => state.allPhoto.photos)
+export const Main: FC = (): JSX.Element => {
+  const photos = useSelector((state: RootState) => state?.allPhoto?.photos)
+
   console.log(photos)
 
   return (
