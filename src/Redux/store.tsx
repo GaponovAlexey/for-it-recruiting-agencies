@@ -4,7 +4,7 @@ import photosSlice from './reducer'
 // ...
 const store = configureStore({
   reducer: {
-    photo: photosSlice,
+    allPhoto: photosSlice,
   },
 })
 export type AppDispatch = typeof store.dispatch
